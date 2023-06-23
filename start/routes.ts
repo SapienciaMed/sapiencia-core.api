@@ -24,6 +24,7 @@ Route.get("/", async () => {
   return "Api de servicios Transversales de SAPIENCIA";
 });
 
+
 Route.group(() => {
   Route.get(
     "/get-by-grouper/:grouper",
