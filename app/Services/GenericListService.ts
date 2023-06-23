@@ -8,7 +8,7 @@ export interface IGenericListService {
     grouper: string
   ): Promise<ApiResponse<IGenericList[]>>;
   getGenericListByParent(
-    parentGrouper: string,
+    grouper: string,
     parentItemCode: string
   ): Promise<ApiResponse<IGenericList[]>>;
 }
@@ -31,11 +31,11 @@ export default class GenericListService implements IGenericListService {
   }
 
   async getGenericListByParent(
-    parentGrouper: string,
+    grouper: string,
     parentItemCode: string
   ): Promise<ApiResponse<IGenericList[]>> {
     const res = await this.genericListRepository.getGenericListByParent(
-      parentGrouper,
+      grouper,
       parentItemCode
     );
 

@@ -22,11 +22,11 @@ export default class GenericListController {
     response,
   }: HttpContextContract) {
     try {
-      const { parentGrouper, parentItemCode } = request.qs();
+      const { grouper, parentItemCode } = request.qs();
 
       return response.send(
         await GenericListProvider.getGenericListByParent(
-          parentGrouper,
+          grouper,
           parentItemCode
         )
       );

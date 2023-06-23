@@ -9,7 +9,7 @@ export class GenericListRepositoryFake implements IGenericListRepository {
   }
 
   getGenericListByParent(
-    _parentGroupCode: string,
+    _grouper: string,
     _parentCode: string
   ): Promise<IGenericList[]> {
     return new Promise((res) => {

@@ -4,7 +4,7 @@ import GenericList from "../Models/GenericList";
 export interface IGenericListRepository {
   getGenericListByGrouper(grouper: string): Promise<IGenericList[]>;
   getGenericListByParent(
-    parentGrouper: string,
+    grouper: string,
     parentItemCode: string
   ): Promise<IGenericList[]>;
 }
@@ -18,11 +18,11 @@ export default class GenericListRepository implements IGenericListRepository {
   }
 
   async getGenericListByParent(
-    parentGrouper: string,
+    grouper: string,
     parentItemCode: string
   ): Promise<IGenericList[]> {
     const res = await GenericList.query()
-      .where("parentGrouper", parentGrouper)
+      .where("grouper", grouper)
       .andWhere("parentItemCode", parentItemCode);
 
     return res.map((i) => i.serialize() as IGenericList);

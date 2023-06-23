@@ -3,12 +3,14 @@ import GenericList from "App/Models/GenericList";
 
 export default class extends BaseSeeder {
   public async run() {
-    // Write your database queries inside the run method
+    //Write your database queries inside the run method
     await GenericList.createMany([
       {
         grouper: "TIPOS_DOCUMENTOS",
         itemCode: "CC",
         itemDescription: "Cedula de Ciudadania",
+        parentGrouper: "",
+        parentItemCode: "",
       },
       {
         grouper: "TIPOS_DOCUMENTOS",
