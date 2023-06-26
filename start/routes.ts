@@ -24,12 +24,12 @@ Route.get("/", async () => {
   return "Api de servicios Transversales de SAPIENCIA";
 });
 
-
 Route.group(() => {
   Route.get(
     "/get-by-grouper/:grouper",
     "GenericListController.getGenericListByGrouper"
   );
   Route.get("/get-by-parent", "GenericListController.getGenericListByParent");
+  Route.get("/get-by-groupers", "GenericListController.getGenericListByGroupers");
 }).prefix("/api/v1/generic-list");
 // .middleware("auth");

@@ -36,4 +36,23 @@ export default class GenericListController {
       );
     }
   }
+
+  public async getGenericListByGroupers({
+    request,
+    response,
+  }: HttpContextContract) {
+    try {
+      const {groupers} = request.qs();
+
+      return response.send(
+        await GenericListProvider.getGenericListByGroupers(
+          groupers
+        )
+      );
+    } catch (err) {
+      return response.badRequest(
+        new ApiResponse(null, EResponseCodes.FAIL, String(err))
+      );
+    }
+  }
 }

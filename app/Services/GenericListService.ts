@@ -11,6 +11,9 @@ export interface IGenericListService {
     grouper: string,
     parentItemCode: string
   ): Promise<ApiResponse<IGenericList[]>>;
+  getGenericListByGroupers(
+    groupers: string[]
+  ): Promise<ApiResponse<IGenericList[]>>;
 }
 
 export default class GenericListService implements IGenericListService {
@@ -21,6 +24,20 @@ export default class GenericListService implements IGenericListService {
   ): Promise<ApiResponse<IGenericList[]>> {
     const res = await this.genericListRepository.getGenericListByGrouper(
       grouper
+    );
+
+    if (!res) {
+      return new ApiResponse([], EResponseCodes.FAIL, "Registro no encontrado");
+    }
+
+    return new ApiResponse(res, EResponseCodes.OK);
+  }
+
+  async getGenericListByGroupers(
+    groupers: string[]
+  ): Promise<ApiResponse<IGenericList[]>> {
+    const res = await this.genericListRepository.getGenericListByGroupers(
+      groupers
     );
 
     if (!res) {
