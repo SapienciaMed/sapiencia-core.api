@@ -1,1 +1,1 @@
-# sapiencia-core.api
+# sapiencia-auth.api
