@@ -7,9 +7,10 @@ export interface IGenericListService {
   getGenericListByGrouper(
     grouper: string
   ): Promise<ApiResponse<IGenericList[]>>;
-  getGenericListByParent(
+  getGenericListByAdditionalField(
     grouper: string,
-    parentItemCode: string
+    fieldValue: string,
+    fieldName: string
   ): Promise<ApiResponse<IGenericList[]>>;
   getGenericListByGroupers(
     groupers: string[]
@@ -47,14 +48,17 @@ export default class GenericListService implements IGenericListService {
     return new ApiResponse(res, EResponseCodes.OK);
   }
 
-  async getGenericListByParent(
+  async getGenericListByAdditionalField(
     grouper: string,
-    parentItemCode: string
+    fieldValue: string,
+    fieldName: string
   ): Promise<ApiResponse<IGenericList[]>> {
-    const res = await this.genericListRepository.getGenericListByParent(
-      grouper,
-      parentItemCode
-    );
+    const res =
+      await this.genericListRepository.getGenericListByAdditionalField(
+        grouper,
+        fieldValue,
+        fieldName
+      );
 
     if (!res) {
       return new ApiResponse([], EResponseCodes.FAIL, "Registro no encontrado");

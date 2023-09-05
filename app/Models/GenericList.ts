@@ -12,15 +12,15 @@ export default class GenericList extends BaseModel {
   @column({ columnName: "LGE_ELEMENTO_CODIGO", serializeAs: "itemCode" })
   public itemCode: string;
 
-  @column({ columnName: "LGE_ELEMENTO_DESCRIPCION", serializeAs: "itemDescription" })
+  @column({
+    columnName: "LGE_ELEMENTO_DESCRIPCION",
+    serializeAs: "itemDescription",
+  })
   public itemDescription: string;
 
   @column({
-    columnName: "LGE_AGRUPADOR_PADRE",
-    serializeAs: "parentGrouper",
+    columnName: "LGE_CAMPOS_ADICIONALES",
+    serializeAs: "additionalFields",
   })
-  public parentGrouper: string;
-
-  @column({ columnName: "LGE_ELEMENTO_CODIGO_PADRE", serializeAs: "parentItemCode" })
-  public parentItemCode: string;
+  public additionalFields: object;
 }
