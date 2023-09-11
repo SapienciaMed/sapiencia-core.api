@@ -22,13 +22,11 @@ export default class extends BaseSchema {
         .string("LGE_ELEMENTO_DESCRIPCION", 200)
         .notNullable()
         .comment("Descripcion del elemento del listado");
-
       table
-        .string("LGE_AGRUPADOR_PADRE")
-        .comment("Codigo del agrupador del listado padre");
-      table
-        .string("LGE_ELEMENTO_CODIGO_PADRE")
-        .comment("Codigo del elemento del listado padre");
+        .jsonb("LGE_CAMPOS_ADICIONALES")
+        .comment(
+          "Elemento JSON que contiene un objeto que define campos adicionales"
+        );
     });
   }
 
