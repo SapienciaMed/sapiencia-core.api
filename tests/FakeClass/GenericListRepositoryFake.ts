@@ -11,7 +11,7 @@ export class GenericListRepositoryFake implements IGenericListRepository {
     });
   }
 
-  getGenericListByParent(
+  getGenericListByAdditionalField(
     _grouper: string,
     _parentCode: string
   ): Promise<IGenericList[]> {

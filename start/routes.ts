@@ -29,7 +29,9 @@ Route.group(() => {
     "/get-by-grouper/:grouper",
     "GenericListController.getGenericListByGrouper"
   );
-  Route.get("/get-by-parent", "GenericListController.getGenericListByParent");
+  Route.get("/get-by-parent", "GenericListController.getGenericListByAdditionalField");
   Route.get("/get-by-groupers", "GenericListController.getGenericListByGroupers");
 }).prefix("/api/v1/generic-list");
 // .middleware("auth");
+
+
