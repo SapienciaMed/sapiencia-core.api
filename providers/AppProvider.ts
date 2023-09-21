@@ -10,6 +10,7 @@ export default class AppProvider {
     /******************************** SERVICES ********************************/
     /**************************************************************************/
     const GenericListService = await import("App/Services/GenericListService");
+    const ParameterService = await import("App/Services/ParameterService");
 
     /**************************************************************************/
     /************************ EXTERNAL SERVICES ********************************/
@@ -21,6 +22,9 @@ export default class AppProvider {
     const GenericListRepository = await import(
       "App/Repositories/GenericListRepository"
     );
+    const ParameterRepository = await import(
+      "App/Repositories/ParameterRepository"
+    );
 
     /**************************************************************************/
     /******************************** CORE  ***********************************/
@@ -29,6 +33,11 @@ export default class AppProvider {
     this.app.container.singleton(
       "core.GenericListProvider",
       () => new GenericListService.default(new GenericListRepository.default())
+    );
+
+    this.app.container.singleton(
+      "core.ParameterProvider",
+      () => new ParameterService.default(new ParameterRepository.default())
     );
   }
 
