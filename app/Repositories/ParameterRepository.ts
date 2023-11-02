@@ -21,11 +21,10 @@ export default class ParameterRepository implements IParameterRepository {
   }
 
   async getParameterByCodes(codes: string[]): Promise<IParameter[]> {
-    const results: IParameter[] = [];
-    await Promise.all(
+    const results = await Promise.all(
       codes.map(async (code) => {
-        const lists = await Parameter.query().where("id", code);
-        results.push(...lists.map((item) => item.serialize() as IParameter));
+        const [item] = await Parameter.query().where("id", code);
+        return item?.serialize() as IParameter;
       })
     );
     return results;
