@@ -23,7 +23,14 @@ export default class GenericListRepository implements IGenericListRepository {
     const results: IGenericList[] = [];
     await Promise.all(
       groupers.map(async (grouper) => {
-        const lists = await GenericList.query().where("grouper", grouper);
+        const query = GenericList.query().where("grouper", grouper);
+
+        if (grouper === "EPS") {
+          query.orderBy("itemDescription", "desc");
+        }
+
+        const lists = await query;
+
         results.push(...lists.map((item) => item.serialize() as IGenericList));
       })
     );
@@ -39,7 +46,9 @@ export default class GenericListRepository implements IGenericListRepository {
       .where("grouper", grouper)
       .whereJson("additionalFields", { [fieldName]: fieldValue });
 
-    console.log(res.toQuery());
+    if (fieldName === "municipalityId") {
+      res.orderBy("itemDescription", "desc");
+    }
 
     return (await res).map((i) => i.serialize() as IGenericList);
   }
